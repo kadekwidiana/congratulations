@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="./asset/terompet.png" />
     <title>101 Tips Lancar Skripsian</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -135,13 +136,47 @@
         <li>Jangan terlalu keras pada diri sendiri, beri ruang untuk kesalahan dan perbaikan.</li>
         <li>Pastikan semua data dan hasil analisis disajikan dengan jelas dan mudah dipahami.</li>
     </ol>
-    <h3>Jangan baca semua, kasian🫣. (kalo gabut gpp)</h3>
-    <a href="https://wa.me/+6283129743647?text=keren,%20thanks%20ya" target="_blank">
+    <h3>Jangan baca semua, kasian :), "kalo gabut gpp".</h3>
+    <a href="https://wa.me/+6283129743647" id="wa-button" target="_blank">
         <button
             style="background-color: #25D366; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
             Klik untuk balas
         </button>
     </a>
+
+    <script>
+        // Adding an event listener to the button
+        document.getElementById('wa-button').addEventListener('click', function (e) {
+            e.preventDefault();  // Prevent the default link action
+
+            // Show SweetAlert message box
+            Swal.fire({
+                title: 'Masukkan Pesan',
+                input: 'textarea',
+                inputLabel: 'Pesan Anda',
+                inputPlaceholder: 'Tulis pesan Anda di sini...',
+                inputAttributes: {
+                    'aria-label': 'Pesan Anda'
+                },
+                showCancelButton: false, // Hide the cancel button
+                confirmButtonText: 'Kirim ke WA',
+                confirmButtonColor: '#25D366', // WhatsApp green color for the button
+                inputValidator: (value) => {
+                    if (!value) {
+                        return 'Pesan tidak boleh kosong!';
+                    }
+                },
+                allowOutsideClick: false, // Disable closing by clicking outside
+                allowEscapeKey: false // Disable closing by pressing Escape key
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to WhatsApp with the user's message
+                    const message = encodeURIComponent(result.value);
+                    window.location.href = `https://wa.me/+6283129743647?text=${message}`;
+                }
+            });
+        });
+    </script>
     <script src="https://cdn.rawgit.com/bungfrangki/efeksalju/2a7805c7/efek-salju.js" type="text/javascript"></script>
 </body>
 
